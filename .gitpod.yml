@@ -1,0 +1,23 @@
+tasks:
+  - name: terraform
+    env:
+      TF_LOG: DEBUG
+    before: |
+      cd $THEIA_WORKSPACE_ROOT
+      chmod u+x bin/*
+      source ./bin/set_tf_alias.sh
+      source ./bin/install_terraform_cli.sh
+      source ./bin/generate_tfrc_credentials
+      cp $$THEIA_WORKSPACE_ROOT/terraform.tfvars.example $$THEIA_WORKSPACE_ROOT/terraform.tfvars
+      source ~/.bash_profile
+  - name: aws-cli
+    env:
+      AWS_CLI_AUTO_PROMPT: on-partial
+    before: |
+      cd $THEIA_WORKSPACE_ROOT
+      source ./bin/install_aws_cli.sh
+      source ~/.bash_profile
+vscode:
+  extensions:
+    - amazonwebservices.aws-toolkit-vscode
+    - hashicorp.terraform
