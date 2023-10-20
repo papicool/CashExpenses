@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "website_bucket" {
 
 }
 
-resource "aws_s3_object" "upload_assets" {
+/* resource "aws_s3_object" "upload_assets" {
   # https://developer.hashicorp.com/terraform/language/functions/fileset
   # https://developer.hashicorp.com/terraform/language/meta-arguments/for_each
   for_each = fileset("${var.public_path}/assets/", "*.{jpeg,jpg,png,gif}")
@@ -19,5 +19,16 @@ resource "aws_s3_object" "upload_assets" {
   etag = filemd5("${var.public_path}/assets/${each.key}")
   lifecycle {
     ignore_changes = [etag]
+  }
+} */
+
+# Create an S3 event notification to trigger the Lambda function when an object is created
+resource "aws_s3_bucket_notification" "example_notification" {
+  bucket = aws_s3_bucket.website_bucket.bucket
+
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.lambda.arn
+    events              = ["s3:ObjectCreated:*"]
+    #filter_prefix       = "your-prefix/"  # Optional: Filter objects by prefix
   }
 }
