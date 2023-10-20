@@ -1,5 +1,5 @@
 # CashExpenses
-
+![architecture](architecture.png)
 I created this project for automating some tasks I was doing manually when taking care of my personal finances.
 This Project will use only at the first time :
 
