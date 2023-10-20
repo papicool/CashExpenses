@@ -3,7 +3,7 @@
 I created this project for automating some tasks I was doing manually when taking care of my personal finances.
 This Project will use only at the first time :
 
-- AWS services such as lambda (Python) and S3 to process my financial data
+- AWS services such as lambda (Python) and S3 to process my financial data and AWS recognition
 - an external data storage to externalize data storage (TO DEFINE)
 
 At the second time, We can reflect :
