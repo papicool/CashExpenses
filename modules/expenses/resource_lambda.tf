@@ -5,10 +5,10 @@ resource "aws_lambda_function" "example_lambda" {
   runtime      = "python3.8"
   role         = aws_iam_role.lambda_execution_role.arn
 
-  #s3_bucket = "your-s3-bucket"  # Optional if you want to deploy code from an S3 bucket
-  #s3_key    = "your-code.zip"   # Optional if you want to deploy code from an S3 bucket
+  s3_bucket = "${aws_s3_bucket.website_bucket.bucket}"  # Optional if you want to deploy code from an S3 bucket
+  s3_key    = "MyLambdaFunction.zip"   # Optional if you want to deploy code from an S3 bucket
 
-  source_code_hash = filebase64sha256("~/workspace/CashExpenses/aws/lambda/MyLambdaFunction.zip")
+  source_code_hash = filebase64sha256("/workspace/CashExpenses/aws/lambda/MyLambdaFunction.zip")
 }
 
 resource "aws_iam_role" "lambda_execution_role" {
