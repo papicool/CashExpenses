@@ -15,5 +15,4 @@ provider "aws" {
 module "cashExpenses" {
   source = "./modules/expenses"
   public_path =  var.expenses.public_path
-  user_uuid= "pmf"
 } 
